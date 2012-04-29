@@ -50,7 +50,7 @@ class Preview
 
   DEPENDECIES = {
     # :format => {:gem => 'name of gem'  , :require => 'file to require'}
-    :markdown => {:gem => 'bluecloth'    , :require => 'bluecloth'      },
+    :markdown => {:gem => 'redcarpet'    , :require => 'redcarpet'      },
     :textile  => {:gem => 'RedCloth'     , :require => 'redcloth'       },
     :rdoc     => {:gem => 'github-markup', :require => 'github/markup'  },
     :ronn     => {:gem => 'ronn'         , :require => 'ronn'           },
@@ -75,7 +75,7 @@ class Preview
   def show_markdown
     return unless load_dependencies(:markdown)
     show_with(:browser) do
-      wrap_html BlueCloth.new(content).to_html
+      wrap_html Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(content)
     end
   end
 
